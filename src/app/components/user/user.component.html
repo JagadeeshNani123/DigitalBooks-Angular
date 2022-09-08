@@ -1,0 +1,47 @@
+<div class="container">
+    <h1> User Registration</h1>
+    <div class="users-container">
+      <div class="users-form">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="">User Name</label>
+            <input type="text" name="userName" [(ngModel)]="user.userName">
+          </div>
+          <div class="form-group">
+              <label for="">Email Id</label>
+              <input  input type="text" name="emailId" [(ngModel)]="user.emailId">
+            </div>
+            <div class="form-group">
+              <label for="">Password</label>
+              <input type="password" name="password" [(ngModel)]="user.password">
+            </div>
+            <div class="form-group">
+              <label for="">Role Id</label>
+              <input type="text" name="roleId" [(ngModel)]="user.roleId">
+            </div>
+            <div class="form-group">
+                <label for="">First Name</label>
+                <input type="text" name="firstName" [(ngModel)]="user.firstName">
+              </div>
+              <div class="form-group">
+                <label for="">Last Name</label>
+                <input type="text" name="lastName" [(ngModel)]="user.lastName">
+              </div>
+          <div class="form-group">
+            <button>Save</button>
+          </div>
+        </form>
+      </div>
+      <div class="users-grid">
+        <div class="user-row" *ngFor="let user of users">
+          <div class="user-row-details" (click)="populateForm(user)">
+            <span>{{ user.userName }}</span>
+            <span>{{ user.emailId }}</span>
+          </div>
+          <div class="user-row-action">
+            <a (click)="deleteUser(user.userId)"><i class="fa-solid fa-trash"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
