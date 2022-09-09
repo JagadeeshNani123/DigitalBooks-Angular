@@ -11,12 +11,12 @@ export class UserComponent implements OnInit {
   title = 'users';
   users:User[] = [];
   user : User = {
-    userId:'',
+    userId:'0',
     userName:'',
     emailId:'',
     password:'',
     roleId:1,
-    active: false,
+    active: true,
     firstName:'',
     lastName:''
   }
@@ -35,19 +35,19 @@ export class UserComponent implements OnInit {
     );
   }
 
-  onSubmit(){
-    if(this.user.userId === ''){
+  onSaveSubmit(){
+    if(this.user.userId === '0'){
       this.userService.addUser(this.user)
       .subscribe(
         response => {
           this.getAllUsers();
           this.user = {
-            userId:'',
+            userId:'0',
             userName:'',
             emailId:'',
             password:'',
             roleId:1,
-            active: false,
+            active: true,
             firstName:'',
             lastName:''
           };

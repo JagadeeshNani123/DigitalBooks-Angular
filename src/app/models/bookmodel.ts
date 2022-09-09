@@ -1,15 +1,15 @@
 export interface Book {
-      BookId: string;
-      BookName : string;
-      CategoryId : number;
-      Price : string;
-      Publisher :string;
-      UserId :string;
-      PublishedDate :string;
-      Content :string;
+      bookId: string;
+      bookName : string;
+      categoryId : string;
+      price : string;
+      publisher :string;
+      userId :string;
+      publishedDate :string;
+      content :string;
       Active : boolean;
-      CreatedDate : Date;
-      Createdby : string;
-      ModifiedDate : Date;
-      Modifiedby :string;
+      createdDate : string;
+      createdby : string;
+      modifiedDate : string;
+      modifiedby :string;
 }
