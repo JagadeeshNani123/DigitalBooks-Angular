@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { UserComponent } from './components/user/user.component';
-import { BookComponent } from './components/book/book.component';
+import { StartupComponent } from './components/startup/startup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    BookComponent
+    routingComponents, 
+    StartupComponent
   ],
   imports: [
     BrowserModule,

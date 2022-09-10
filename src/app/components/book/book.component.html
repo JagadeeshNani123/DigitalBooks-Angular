@@ -1,1 +1,24 @@
-<p>book works!</p>
+<form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onSearchSubmit()" >
+    <h2>Search Book</h2>
+    <div class="input-container">
+        <i class="fa fa-book icon" style="font-size:24px"></i>
+      <input class="input-field" type="text" placeholder="Book name" name="usrnm" [(ngModel)]="book.bookName">
+    </div>
+  
+    <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input class="input-field" type="text" placeholder="Author name" name="email" [(ngModel)]="book.userId">
+    </div>
+    
+    <div class="input-container">
+      <i class="fa fa-briefcase icon"></i>
+      <input class="input-field" type="password" placeholder="Publisher" name="psw" [(ngModel)]="book.publisher">
+    </div>
+  
+    <div class="input-container">
+        <i class='fa fa-calendar icon' ></i>
+      <input class="input-field" type="text" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate">
+    </div>
+    <button type="submit"> <i class="fa fa-search icon">Serach Books</i></button>
+  </form>
+  
