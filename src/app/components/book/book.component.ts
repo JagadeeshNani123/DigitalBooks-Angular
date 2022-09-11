@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/bookmodel';
+import { User } from 'src/app/models/usermodel';
 import { BookService } from 'src/app/services/book.service';
+import { UsersService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-book',
@@ -25,21 +27,47 @@ export class BookComponent implements OnInit {
     modifiedDate : '',
     modifiedby :''
   }
+  users:User[] = [];
+  user : User = {
+    userId:'0',
+    userName:'',
+    emailId:'',
+    password:'',
+    roleId:1,
+    active: true,
+    firstName:'',
+    lastName:''
+  }
+  
+    
+  selected = "----"
+  
+  update(e:any){
+    this.selected = e.target.value
+  }
 
-  constructor(private bookService : BookService){
+  constructor(private bookService : BookService, private userService : UsersService){
   }
 
   ngOnInit(): void {
     this.getAllBooks();
+    this.getAllUsers();
   }
 
+  getAllUsers() {
+    this.userService.getAllUsers()
+    .subscribe(
+      response => { this.users = response}
+    );
+  }
   getAllBooks() {
     this.bookService.getBookList()
     .subscribe(
       response => { this.books = response}
     );
   }
-
+  
+  
   onSearchSubmit(){
       this.bookService.addBook(this.book)
       .subscribe(
@@ -74,4 +102,9 @@ export class BookComponent implements OnInit {
     )
   }
 
+  getBookSerachList(bookName:string, authourName: string, publisher: string, publishedDate: Date ){
+
+    return this.bookService.getBookSerachList(bookName, authourName, publisher, publishedDate );
+
+}
 }

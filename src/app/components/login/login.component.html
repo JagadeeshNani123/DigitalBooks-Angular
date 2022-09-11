@@ -1,18 +1,14 @@
-
-
-  <form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onLoginSubmit()" >
-  <h2>Login</h2>
+<form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onLoginSubmit()" >
+  <h2>Log In</h2>
   <div class="input-container">
-    <i class="fa fa-user icon"></i>
-    <input class="input-field" type="text" placeholder="Enter user name" name="usrnm" [(ngModel)]="user.userName">
+      <i class="fa fa-user icon" style="font-size:24px"></i>
+    <input class="input-field" type="text" placeholder="User name" name="usrnm" [(ngModel)]="user.userName">
   </div>
 
-  
   <div class="input-container">
     <i class="fa fa-key icon"></i>
-    <input class="input-field" type="password" placeholder="Enter password" name="psw" [(ngModel)]="user.password">
+    <input class="input-field" type="password" placeholder="Password" name="email" [(ngModel)]="user.password">
   </div>
-
-
+  
   <button type="submit" class="btn">Log In</button>
 </form>

@@ -31,4 +31,9 @@ export class BookService {
   updateBook(book: Book):Observable<Book>{
     return this.http.put<Book>(this.baseUrl +'/'+book.bookId, book);
   }
+
+  getBookSerachList(bookName:string, authourName: string, publisher: string, publishedDate: Date ):Observable<Book>{
+    var id = 'bookName='+bookName+'&authorName='+authourName+'&publisher='+publisher+'&publishedDate='+publishedDate;
+    return this.http.get<Book>(this.baseUrl+'/'+id)
+  }
 }

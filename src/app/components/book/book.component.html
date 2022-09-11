@@ -2,22 +2,42 @@
     <h2>Search Book</h2>
     <div class="input-container">
         <i class="fa fa-book icon" style="font-size:24px"></i>
-      <input class="input-field" type="text" placeholder="Book name" name="usrnm" [(ngModel)]="book.bookName">
+        <select #cricket (change)="update($event)">
+          <option value="default">Select Book Name</option>
+          <option *ngFor="let book of books" [value]="book.bookName">
+              {{book.bookName}}
+          </option>
+          [(ngModel)]="book.bookName"
+        </select>
     </div>
   
     <div class="input-container">
       <i class="fa fa-user icon"></i>
-      <input class="input-field" type="text" placeholder="Author name" name="email" [(ngModel)]="book.userId">
+      <select #author (change)="update($event)">
+        <option value="default">Select Author</option>
+        <option *ngFor="let user of users" [value]="user">
+            {{user.userName}}
+        </option>
+        [(ngModel)]="user.userName"
+      </select>
+      
     </div>
     
     <div class="input-container">
       <i class="fa fa-briefcase icon"></i>
-      <input class="input-field" type="password" placeholder="Publisher" name="psw" [(ngModel)]="book.publisher">
+      <select #publisher (change)="update($event)" >
+        <option value="default">Select Publisher</option>
+        <option *ngFor="let book of books" [value]="book">
+            {{book.publisher}}
+        </option>
+        [(ngModel)]="{{selected}}"
+    </select>
+      
     </div>
   
     <div class="input-container">
         <i class='fa fa-calendar icon' ></i>
-      <input class="input-field" type="text" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate">
+      <input class="input-field" type="date" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate">
     </div>
     <button type="submit"> <i class="fa fa-search icon">Serach Books</i></button>
   </form>
