@@ -68,15 +68,12 @@ export class BookComponent implements OnInit {
   }
   
   
-  onSearchSubmit(){
-      this.bookService.addBook(this.book)
-      .subscribe(
-        response => {
-          this.getAllBooks();   
-    }
-    ); 
-    
-  }   
+  
+searchBooks(){
+  // this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.price).subscribe(
+  //   response => {this.searchResult = response; console.log(this.searchResult);}
+  // );
+  }
   
 
   deleteUser(id:string){

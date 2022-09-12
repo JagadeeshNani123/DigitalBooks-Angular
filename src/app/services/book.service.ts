@@ -36,4 +36,8 @@ export class BookService {
     var id = 'bookName='+bookName+'&authorName='+authourName+'&publisher='+publisher+'&publishedDate='+publishedDate;
     return this.http.get<Book>(this.baseUrl+'/'+id)
   }
+
+    SearchBooks(c:string, aID:string, p: number ):Observable<any[]>{
+        return this.http.get<any>(this.baseUrl +"SearchBooks/"+ c+"/"+aID+"/"+p);
+    }
 }

@@ -1,8 +1,8 @@
-<form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onSearchSubmit()" >
+<form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="searchBooks()" >
     <h2>Search Book</h2>
     <div class="input-container">
         <i class="fa fa-book icon" style="font-size:24px"></i>
-        <select #cricket (change)="update($event)">
+        <select #Book (change)="update(Book.value)">
           <option value="default">Select Book Name</option>
           <option *ngFor="let book of books" [value]="book.bookName">
               {{book.bookName}}
@@ -10,6 +10,7 @@
           [(ngModel)]="book.bookName"
         </select>
     </div>
+    
   
     <div class="input-container">
       <i class="fa fa-user icon"></i>

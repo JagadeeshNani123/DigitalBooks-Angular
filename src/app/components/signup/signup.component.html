@@ -17,6 +17,16 @@
 
   <div class="input-container">
     <i class="fa fa-user icon"></i>
+    <select #Role (change)="update(Role.value)">
+      <option value="default">Select Role</option>
+      <option *ngFor="let role of roles" value={{role.roleId}}>
+          {{role.roleName}}
+      </option>
+    </select>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
     <input class="input-field" type="text" placeholder="Enter first name" name="usrnm" [(ngModel)]="user.firstName">
   </div>
 

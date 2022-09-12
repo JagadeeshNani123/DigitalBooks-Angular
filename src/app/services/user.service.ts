@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, ɵAPP_ID_RANDOM_PROVIDER } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/usermodel';
+import { UserValidationRequestModel } from '../models/userValidationRequestmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class UsersService {
   //update user
   updateUser(user: User):Observable<User>{
     return this.http.put<User>(this.baseUrl +'/'+user.userId, user);
+  }
+
+  authenticateUser(request: UserValidationRequestModel):Observable<UserValidationRequestModel>{
+    return this.http.post<UserValidationRequestModel>('https://localhost:44392/validate', request);
   }
 }

@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     firstName:'',
     lastName:''
   }
+  
 
   constructor(private loginService : UsersService){
   }
@@ -35,26 +36,5 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onLoginSubmit(){
-    if(this.user.userId === '0'){
-      this.loginService.addUser(this.user)
-      .subscribe(
-        response => {
-          this.getAllUsers();
-          this.user = {
-            userId:'0',
-            userName:'',
-            emailId:'',
-            password:'',
-            roleId:1,
-            active: true,
-            firstName:'',
-            lastName:''
-          };
-        }
-      );
-    }
-      
-  }
-
+  
 }
