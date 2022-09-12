@@ -1,7 +1,8 @@
 export interface Purchase {
-    purchaseId: string;
-    bookId: string;
+    purchaseId: number;
+    bookId: number;
     emailId: string;
-    purchaseDate: Date;
+    purchaseDate: string;
     puchaseMode: string;
+    isRefunded: string;
 }

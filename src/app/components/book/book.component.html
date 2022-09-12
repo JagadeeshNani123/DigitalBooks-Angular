@@ -2,36 +2,43 @@
     <h2>Search Book</h2>
     <div class="input-container">
         <i class="fa fa-book icon" style="font-size:24px"></i>
-        <select #Book (change)="update(Book.value)">
+        <select #Book (change)="SelectedBook(Book.value)">
           <option value="default">Select Book Name</option>
           <option *ngFor="let book of books" [value]="book.bookName">
               {{book.bookName}}
           </option>
-          [(ngModel)]="book.bookName"
+         
         </select>
     </div>
     
   
     <div class="input-container">
       <i class="fa fa-user icon"></i>
-      <select #author (change)="update($event)">
+      <select #Author (change)="SelectedAuthor(Author.value)">
         <option value="default">Select Author</option>
-        <option *ngFor="let user of users" [value]="user">
+        <option *ngFor="let user of users" [value]="user.userName">
             {{user.userName}}
         </option>
-        [(ngModel)]="user.userName"
       </select>
       
     </div>
     
     <div class="input-container">
       <i class="fa fa-briefcase icon"></i>
-      <select #publisher (change)="update($event)" >
+      <select #Publisher (change)="SelectedPublisher(Publisher.value)" >
         <option value="default">Select Publisher</option>
-        <option *ngFor="let book of books" [value]="book">
+        <option *ngFor="let book of books" [value]="book.publisher">
             {{book.publisher}}
         </option>
-        [(ngModel)]="{{selected}}"
+    </select>
+    </div>
+    <div class="input-container">
+      <i class="fa fa-briefcase icon"></i>
+      <select #Publisher (change)="SelectedCategory(Publisher.value)" >
+        <option value="default">Select Category</option>
+        <option *ngFor="let category of categories" [value]="category.categoryId">
+            {{category.categoryName}}
+        </option>
     </select>
       
     </div>

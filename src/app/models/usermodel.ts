@@ -7,4 +7,5 @@ export interface User {
     active: boolean;
     firstName: string;
     lastName: string;
+ 
 }

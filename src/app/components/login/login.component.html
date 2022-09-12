@@ -1,14 +1,15 @@
-<form #form="ngForm" style="max-width:500px;margin:auto" >
+
   <h2>Log In</h2>
   <div class="input-container">
       <i class="fa fa-user icon" style="font-size:24px"></i>
-    <input class="input-field" type="text" placeholder="User name" name="usrnm" [(ngModel)]="user.userName">
+    <input class="input-field" type="text" placeholder="User name" name="usrnm" [(ngModel)]="usernameC">
   </div>
 
   <div class="input-container">
     <i class="fa fa-key icon"></i>
-    <input class="input-field" type="password" placeholder="Password" name="email" [(ngModel)]="user.password">
+    <input class="input-field" type="password" placeholder="Password" name="email" [(ngModel)]="passwordC" >
   </div>
   
-  <button type="submit" class="btn">Log In</button>
-</form>
+  <!-- Submit button -->
+  <button type="button" class="btn btn-primary btn-block mb-4" (click)="login()">Sign in</button>
+

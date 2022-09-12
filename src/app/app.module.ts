@@ -11,13 +11,21 @@ import { GuestComponent } from './components/guest/guest.component';
 import { AuthorComponent } from './components/author/author.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ReaderComponent } from './components/reader/reader.component';
+import { PurchaseComponent } from './components/purchase/purchase.component';
+import { AddbookComponent } from './components/addbook/addbook.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents, 
     HeaderComponent, 
-    FooterComponent, GuestComponent, AuthorComponent, AdminComponent, ReaderComponent
+    FooterComponent, 
+    GuestComponent, 
+    AuthorComponent, 
+    AdminComponent, 
+    ReaderComponent,
+    PurchaseComponent,
+    AddbookComponent
   ],
   imports: [
     BrowserModule,

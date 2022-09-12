@@ -33,7 +33,7 @@ export class UsersService {
     return this.http.put<User>(this.baseUrl +'/'+user.userId, user);
   }
 
-  authenticateUser(request: UserValidationRequestModel):Observable<UserValidationRequestModel>{
-    return this.http.post<UserValidationRequestModel>('https://localhost:44392/validate', request);
-  }
+  GetUserByCredentials(val:any):Observable<User>{
+    return this.http.post<any>(this.baseUrl +'/GetUserByUsingCredentials',val)
+}
 }

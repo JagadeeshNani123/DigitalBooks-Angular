@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/bookmodel';
+import { Category } from 'src/app/models/categorymodel';
 import { User } from 'src/app/models/usermodel';
 import { BookService } from 'src/app/services/book.service';
+import { CategoryService } from 'src/app/services/category.services';
 import { UsersService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class BookComponent implements OnInit {
     bookId: '',
     bookName : '',
     categoryId : '0',
-    price : '',
+    price : 0,
     publisher :'',
     userId :'',
     publishedDate : '',
@@ -38,20 +40,43 @@ export class BookComponent implements OnInit {
     firstName:'',
     lastName:''
   }
+
+  categories:Category[] = [];
+  category : Category = {
+    categoryId:'0',
+    categoryName:''
+  }
   
-    
-  selected = "----"
-  
-  update(e:any){
-    this.selected = e.target.value
+  searchResult:any;  
+  selectedBook = "----";
+  selectedAuthor="";
+  selectedPublisher="";
+  selectedCategory="";
+
+  SelectedBook(book:string){
+    this.selectedBook = book;
   }
 
-  constructor(private bookService : BookService, private userService : UsersService){
+
+  SelectedAuthor(author:string){
+    this.selectedAuthor = author;
+  }
+
+  SelectedPublisher(publisher:string){
+    this.selectedPublisher = publisher;
+  }
+
+  SelectedCategory(category:string){
+    this.selectedCategory = category;
+  }
+  constructor(private bookService : BookService, private userService : UsersService,
+    private categoryService : CategoryService){
   }
 
   ngOnInit(): void {
     this.getAllBooks();
     this.getAllUsers();
+    this.getAllCategories();
   }
 
   getAllUsers() {
@@ -60,8 +85,16 @@ export class BookComponent implements OnInit {
       response => { this.users = response}
     );
   }
+
+  getAllCategories() {
+    this.categoryService.getAllCategories()
+    .subscribe(
+      response => { this.categories = response}
+    );
+  }
+
   getAllBooks() {
-    this.bookService.getBookList()
+    this.bookService.GetBookList()
     .subscribe(
       response => { this.books = response}
     );
@@ -70,9 +103,9 @@ export class BookComponent implements OnInit {
   
   
 searchBooks(){
-  // this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.price).subscribe(
-  //   response => {this.searchResult = response; console.log(this.searchResult);}
-  // );
+  this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.book.price).subscribe(
+     response => {this.searchResult = response; console.log(this.searchResult);}
+   );
   }
   
 

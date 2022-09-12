@@ -1,10 +1,13 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthorComponent } from './components/author/author.component';
 import { BookComponent } from './components/book/book.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { GuestComponent } from './components/guest/guest.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
+import { ReaderComponent } from './components/reader/reader.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserComponent } from './components/user/user.component';
 
@@ -13,8 +16,11 @@ const routes: Routes = [
   {path:"book", component: BookComponent},
   {path:"login", component: LoginComponent},
   {path:"signup", component: SignupComponent},
+  {path:"dashboard/guest", component: GuestComponent},
+  {path:"author", component: AuthorComponent},
+  {path:"reader", component: ReaderComponent},
   {path:"dashboard", component: DashboardComponent},
-  {path:'', redirectTo:"/book", pathMatch:'full'}
+  {path:'', redirectTo:"/dashboard", pathMatch:'full'}
 ];
 
 @NgModule({

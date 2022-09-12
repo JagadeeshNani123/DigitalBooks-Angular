@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/usermodel';
+import { BookService } from 'src/app/services/book.service';
 import { UsersService } from 'src/app/services/user.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +11,8 @@ import { UsersService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  title = 'users';
-  users:User[] = [];
-  user : User = {
+  response :any;
+  user = {
     userId:'0',
     userName:'',
     emailId:'',
@@ -20,21 +22,41 @@ export class LoginComponent implements OnInit {
     firstName:'',
     lastName:''
   }
-  
-
-  constructor(private loginService : UsersService){
-  }
+  token : string="";
+  usernameC:any;
+  passwordC:any;
+  constructor(private userService: UsersService, private service: BookService, public router:Router) { }
 
   ngOnInit(): void {
-    this.getAllUsers();
   }
 
-  getAllUsers() {
-    this.loginService.getAllUsers()
-    .subscribe(
-      response => { this.users = response}
-    );
-  }
+  login(){
+    var val = {
+      userName : this.usernameC,
+      password : this.passwordC
+    }
+    this.service.Login(val).subscribe(
+      response => {  this.response = response; 
 
-  
+        if(this.response.token != ""){
+          console.log(this.response);
+           // store jwt token in local storage to keep user logged in between page refreshes
+           localStorage.setItem('token', this.response.token);
+           localStorage.setItem('user', JSON.stringify(this.response.user));
+           
+          var user = this.userService.GetUserByCredentials(val);
+          // this.nameEmitter.emit(true);  
+          if(this.user.roleId == 1) //This is Author
+          {
+          this.router.navigate(['/author']);  
+          }
+          else{ 
+            // This is Reader
+            this.router.navigate(['/reader']);  
+          }
+
+        } 
+      }
+    )    
+  }
 }
