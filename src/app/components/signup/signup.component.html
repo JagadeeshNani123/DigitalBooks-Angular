@@ -2,17 +2,17 @@
   <h2>Register Form</h2>
   <div class="input-container">
     <i class="fa fa-user icon"><span>User Name</span></i>
-    <input class="input-field" type="text" placeholder="Enter user name" name="usrnm" [(ngModel)]="user.userName">
+    <input class="input-field" type="text" placeholder="Enter user name" name="usrnm" [(ngModel)]="user.userName" required>
   </div>
 
   <div class="input-container">
     <i class="fa fa-envelope icon"><span>Email Id</span></i>
-    <input class="input-field" type="text" placeholder="Enter email address" name="email" [(ngModel)]="user.emailId">
+    <input class="input-field" type="text" placeholder="Enter email address" name="email" [(ngModel)]="user.emailId" required>
   </div>
   
   <div class="input-container">
     <i class="fa fa-key icon"><span>Password</span></i>
-    <input class="input-field" type="password" placeholder="Enter password" name="psw" [(ngModel)]="user.password">
+    <input class="input-field" type="password" placeholder="Enter password" name="psw" [(ngModel)]="user.password" required>
   </div>
 
   <div class="input-container">
@@ -27,12 +27,12 @@
 
   <div class="input-container">
     <i class="fa fa-user icon" ><span>First Name</span></i>
-    <input class="input-field" type="text" placeholder="Enter first name" name="usrnm" [(ngModel)]="user.firstName">
+    <input class="input-field" type="text" placeholder="Enter first name" name="usrnm" [(ngModel)]="user.firstName" required>
   </div>
 
   <div class="input-container">
     <i class="fa fa-user icon"><span>Last Name</span></i>
-    <input class="input-field" type="text" placeholder="Enter last name" name="usrnm" [(ngModel)]="user.lastName">
+    <input class="input-field" type="text" placeholder="Enter last name" name="usrnm" [(ngModel)]="user.lastName" required>
   </div>
 
   <button type="submit" class="btn">Register</button>

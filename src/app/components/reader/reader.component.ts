@@ -11,47 +11,54 @@ export class ReaderComponent implements OnInit {
 
   searchResult:any;
 
-  book :any;
-  bookID : any;
-  display : string = 'none';
-  ModalTitle="Purchase Book";
-  readBookdisplay : string ="none";
-  ModalReadBookTitle : string ="Read Book";
-  bookContent : string ="";
-  userEmailID : string ="";
+    book :any;
+    bookID : any;
+    display : string = 'none';
+    ModalTitle="Purchase Book";
+    readBookdisplay : string ="none";
+    ModalReadBookTitle : string ="Read Book";
+    bookContent : string ="";
+    userEmailID : string ="";
 
-  constructor(private services: BookService){}
+    constructor(private services: BookService){}
 
-  ngOnInit(): void {
-    this.GetUserID();
-    this.loadBookHistory();
-  }
-  purchaseClick(item:Book){
-      this.book =item; 
-      this.bookID= this.book.bookId;
-      this.display= 'block';
-  }
-  onCloseHandled() {
-      this.display = "none";
-      this.readBookdisplay ="none";
+    ngOnInit(): void {
+      this.GetUserID();
+      this.loadBookHistory();
     }
-
-    GetUserID(){
-      let values = JSON.parse(localStorage.getItem("user") || '');
-      this.userEmailID = values.emailId;
-      console.log(this.userEmailID);
+    purchaseClick(item:Book){
+        this.book =item; 
+        this.bookID= this.book.bookId;
+        this.display= 'block';
     }
+    onCloseHandled() {
+        this.display = "none";
+        this.readBookdisplay ="none";
+      }
 
-    loadBookHistory(){
-  
-      this.services.GetBookListReader(this.userEmailID).subscribe(
-        response => {this.searchResult = response; }
-      )
-    }
+      GetUserID(){
+        let values = JSON.parse(localStorage.getItem("user") || '');
+        this.userEmailID = values.emailId;
+        console.log(this.userEmailID);
+      }
 
-    readBookClick(item:Book){
-      this.book =item; 
-      this.bookContent= this.book.bookContent;
-      this.readBookdisplay= 'block';
-    }
+      loadBookHistory(){
+    
+        this.services.GetBookListReader(this.userEmailID).subscribe(
+          response => {this.searchResult = response; }
+        )
+      }
+
+      readBookClick(item:Book){
+        this.book =item; 
+        console.log("item =" +JSON.stringify(item));
+        if(item.Active)
+        {
+        this.bookContent= this.book.bookContent;
+        this.readBookdisplay= 'block';
+        }
+        else{
+          alert('The book has blocked by author.');
+        }
+      }
 }

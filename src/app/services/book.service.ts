@@ -67,6 +67,7 @@ export class BookService {
 
     // Purchase 
     PurchaseBook(purchases : Purchase):Observable<Purchase>{
+      console.log('purchase Url:'+ this.baseUrl + "Purchases");
         return this.https.post<Purchase>(this.baseUrl + "Purchases",purchases);
     }
 
@@ -82,7 +83,7 @@ export class BookService {
 
     //Get Book List For Reader
     GetBookListReader(emailId :string):Observable<any>{
-        return this.https.get<any>(this.baseUrl +"GetBooksWithStatus/"+emailId);
+        return this.https.get<any>(this.baseUrl +"Purchases/GetBooksWithStatus?EmailId="+emailId);
     }
 
   getBookSerachList(bookName:string, authourName: string, publisher: string, publishedDate: Date ):Observable<Book>{

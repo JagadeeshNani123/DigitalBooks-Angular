@@ -40,4 +40,17 @@
     bottom: 0;
     width: 100%;
   }
+
+  div.username {
+    position: absolute;
+    right: 150px;  
+    color: white;
+  } 
+  
+
+  signout {
+    position: absolute;
+    right: 150px;  
+    color: white;
+  } 
   

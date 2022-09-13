@@ -24,7 +24,7 @@ export class AddbookComponent implements OnInit {
   }
   books:Book[] = [];
   book : Book = {
-    bookId: '',
+    bookId: '1',
     bookName: '',
     categoryId: '',
     price: 0,
@@ -45,6 +45,7 @@ export class AddbookComponent implements OnInit {
     {
     let values = JSON.parse(localStorage.getItem("user") || '');
     this.book.userId = values.userId;
+    this.user=values;
     }
   }
 
@@ -67,6 +68,10 @@ export class AddbookComponent implements OnInit {
   }
 
   onSubmitClick(){
+    this.book.createdby=this.user.userId;
+    this.book.modifiedby=this.user.userId;
+    this.book.modifiedDate=this.book.publishedDate;
+    this.book.createdDate=this.book.publishedDate;
     this.service.SaveBook(this.book).subscribe(
       response => { 
         alert('Book Added Successfully');

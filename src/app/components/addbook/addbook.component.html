@@ -1,7 +1,7 @@
 <form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onSubmitClick()" >
 <div class="input-container">
   <i class="fa fa-user icon" ><span>Book Name</span></i>
-  <input type="text" class="input-field"  placeholder="Enter Book Name" [(ngModel)]="book.bookName">
+  <input type="text" class="input-field"  placeholder="Enter Book Name" name="bookName" [(ngModel)]="book.bookName" required>
 </div>
 <div class="input-container">
   <i class="fa fa-briefcase icon"><span> Category Name </span></i>
@@ -16,19 +16,19 @@
 </div>
 <div class="input-container">
   <i class="fa fa-briefcase icon"><span> Price </span></i>
- <input type="number" class="input-field" [(ngModel)]="book.price"   placeholder="Price">    
+ <input type="number" class="input-field"   placeholder="Price"  name="prc" [(ngModel)]="book.price" required >    
 </div>
    <div class="input-container">
     <i class="fa fa-briefcase icon"><span> Publisher Name</span></i>
-    <input type="text" class="input-field" [(ngModel)]="book.publisher"publisher  aria-describedby="publisher" placeholder="Enter Publisher">
+    <input type="text" class="input-field"  placeholder="Enter Publisher" name="publisher" [(ngModel)]="book.publisher" required>
   </div>
 <div class="input-container">
   <i class="fa fa-book icon"><span> Book Content </span></i>
-    <input type="text" class="input-field" [(ngModel)]="book.content"  aria-describedby="book content" placeholder="Enter Book Content">
+    <input type="text" class="input-field"  placeholder="Enter Book Content" name="bookcnt" [(ngModel)]="book.content" required>
   </div>
   <div class="input-container">
     <i class='fa fa-calendar icon' ><span>Published Date</span></i>
-  <input class="input-field" type="date" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate">
+  <input class="input-field" type="date" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate" required> 
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button> 

@@ -48,11 +48,8 @@ export class LoginComponent implements OnInit {
            localStorage.setItem('token', this.response.token);
            localStorage.setItem('user', JSON.stringify(this.response.user));
 
-          
-          this.logUser = JSON.stringify( this.userService.GetUserByCredentials(val) );
-          var roleId = this.logUser.roleId;
           // this.nameEmitter.emit(true);  
-          if(this.user.roleId == 1) //This is Author
+          if(this.response.user.roleId == 1) //This is Author
           {
           this.router.navigate(['/author']);  
           }
