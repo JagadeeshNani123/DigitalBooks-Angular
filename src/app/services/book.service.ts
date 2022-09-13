@@ -44,7 +44,8 @@ export class BookService {
 
     // Search books
     SearchBooks(c:string, aID:string, p: number ):Observable<any[]>{
-        return this.https.get<any>(this.baseUrl +"/Books/SearchBooks/"+ c+"/"+aID+"/"+p);
+      var url='Books/SearchBooks?'+'cID='+c+'&aID='+aID+'&price='+p;
+        return this.https.get<any>(this.baseUrl+url);
     }
 
     //Check User Logged in or not
@@ -71,8 +72,13 @@ export class BookService {
 
     //Book History
     GetBookHistory(emailId :string):Observable<any>{
-        return this.https.get<any>(this.baseUrl +"Purchases/"+emailId);
+        return this.https.get<any>(this.baseUrl +"Purchases/BookHistory?emailId="+emailId);
     }
+
+    GetPurchasedBookList(id :number):Observable<any>{
+      return this.https.get<any>(this.baseUrl +"Books/"+ id);
+  }
+
 
     //Get Book List For Reader
     GetBookListReader(emailId :string):Observable<any>{

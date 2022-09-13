@@ -13,6 +13,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ReaderComponent } from './components/reader/reader.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { AddbookComponent } from './components/addbook/addbook.component';
+import { ShowBooksComponent } from './components/book/show-books/show-books.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AddbookComponent } from './components/addbook/addbook.component';
     AdminComponent, 
     ReaderComponent,
     PurchaseComponent,
-    AddbookComponent
+    AddbookComponent,
+    ShowBooksComponent
   ],
   imports: [
     BrowserModule,

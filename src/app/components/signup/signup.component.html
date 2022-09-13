@@ -1,22 +1,22 @@
 <form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onSaveSubmit()" >
   <h2>Register Form</h2>
   <div class="input-container">
-    <i class="fa fa-user icon"></i>
+    <i class="fa fa-user icon"><span>User Name</span></i>
     <input class="input-field" type="text" placeholder="Enter user name" name="usrnm" [(ngModel)]="user.userName">
   </div>
 
   <div class="input-container">
-    <i class="fa fa-envelope icon"></i>
+    <i class="fa fa-envelope icon"><span>Email Id</span></i>
     <input class="input-field" type="text" placeholder="Enter email address" name="email" [(ngModel)]="user.emailId">
   </div>
   
   <div class="input-container">
-    <i class="fa fa-key icon"></i>
+    <i class="fa fa-key icon"><span>Password</span></i>
     <input class="input-field" type="password" placeholder="Enter password" name="psw" [(ngModel)]="user.password">
   </div>
 
   <div class="input-container">
-    <i class="fa fa-user icon"></i>
+    <i class="fa fa-user icon"><span>Role</span></i>
     <select #Role (change)="update(Role.value)">
       <option value="default">Select Role</option>
       <option *ngFor="let role of roles" value={{role.roleId}}>
@@ -26,12 +26,12 @@
   </div>
 
   <div class="input-container">
-    <i class="fa fa-user icon"></i>
+    <i class="fa fa-user icon" ><span>First Name</span></i>
     <input class="input-field" type="text" placeholder="Enter first name" name="usrnm" [(ngModel)]="user.firstName">
   </div>
 
   <div class="input-container">
-    <i class="fa fa-user icon"></i>
+    <i class="fa fa-user icon"><span>Last Name</span></i>
     <input class="input-field" type="text" placeholder="Enter last name" name="usrnm" [(ngModel)]="user.lastName">
   </div>
 

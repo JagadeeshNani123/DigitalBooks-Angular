@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from 'src/app/models/bookmodel';
+import { User } from 'src/app/models/usermodel';
 import { BookService } from 'src/app/services/book.service';
+import { UsersService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-addbook',
@@ -10,6 +12,16 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class AddbookComponent implements OnInit {
   CategoryList:any[] =[];
+  user: User={
+    userId:'0',
+    userName:'',
+    emailId:'',
+    password:'',
+    roleId:1,
+    active: true,
+    firstName:'',
+    lastName:''
+  }
   books:Book[] = [];
   book : Book = {
     bookId: '',
@@ -28,15 +40,19 @@ export class AddbookComponent implements OnInit {
   }
 
   GetUserID(){
+    let userValues =localStorage.getItem("user") ;
+    if(userValues != 'undefined')
+    {
     let values = JSON.parse(localStorage.getItem("user") || '');
     this.book.userId = values.userId;
+    }
   }
 
   onSelected(value:string): void {
 		this.book.categoryId = value;
 	}
 
-  constructor(private service: BookService,public router:Router) { }
+  constructor(private service: BookService, private userService: UsersService,public router:Router) { }
 
   ngOnInit(): void {
     this.GetUserID();

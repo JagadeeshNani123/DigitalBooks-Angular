@@ -34,6 +34,7 @@ export class UsersService {
   }
 
   GetUserByCredentials(val:any):Observable<User>{
-    return this.http.post<any>(this.baseUrl +'/GetUserByUsingCredentials',val)
+    console.log("GetCredentialsUrl"+this.baseUrl +'/GetUserByUsingCredentials');
+    return this.http.post<any>(this.baseUrl +'/GetUserByUsingCredentials',val);
 }
 }

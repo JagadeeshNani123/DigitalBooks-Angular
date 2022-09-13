@@ -1,7 +1,7 @@
 <form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="searchBooks()" >
     <h2>Search Book</h2>
     <div class="input-container">
-        <i class="fa fa-book icon" style="font-size:24px"></i>
+        <i class="fa fa-book icon"><span> Book Name </span></i>
         <select #Book (change)="SelectedBook(Book.value)">
           <option value="default">Select Book Name</option>
           <option *ngFor="let book of books" [value]="book.bookName">
@@ -13,28 +13,30 @@
     
   
     <div class="input-container">
-      <i class="fa fa-user icon"></i>
+      <i class="fa fa-user icon"><span> Author Name </span></i>
       <select #Author (change)="SelectedAuthor(Author.value)">
         <option value="default">Select Author</option>
-        <option *ngFor="let user of users" [value]="user.userName">
-            {{user.userName}}
+        <option *ngFor="let author of users" [value]="author.roleId">
+            {{author.userName}}
         </option>
       </select>
       
     </div>
     
+    <label></label>
     <div class="input-container">
-      <i class="fa fa-briefcase icon"></i>
+      <i class="fa fa-briefcase icon"><span> Publisher Name </span></i>
       <select #Publisher (change)="SelectedPublisher(Publisher.value)" >
         <option value="default">Select Publisher</option>
         <option *ngFor="let book of books" [value]="book.publisher">
             {{book.publisher}}
         </option>
     </select>
+    <label></label>
     </div>
     <div class="input-container">
-      <i class="fa fa-briefcase icon"></i>
-      <select #Publisher (change)="SelectedCategory(Publisher.value)" >
+      <i class="fa fa-briefcase icon"><span> Category Name </span></i>
+      <select #Category (change)="SelectedCategory(Category.value)" >
         <option value="default">Select Category</option>
         <option *ngFor="let category of categories" [value]="category.categoryId">
             {{category.categoryName}}
@@ -44,9 +46,15 @@
     </div>
   
     <div class="input-container">
-        <i class='fa fa-calendar icon' ></i>
+        <i class='fa fa-calendar icon' ><span>Published Date</span></i>
       <input class="input-field" type="date" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate">
     </div>
     <button type="submit"> <i class="fa fa-search icon">Serach Books</i></button>
   </form>
-  
+ 
+  <br/>
+ <app-show-books [searchResult]="searchResult"></app-show-books>
+
+ <br/>
+ <br/>
+ <br/>

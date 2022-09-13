@@ -4,5 +4,4 @@ export interface Purchase {
     emailId: string;
     purchaseDate: string;
     puchaseMode: string;
-    isRefunded: string;
 }

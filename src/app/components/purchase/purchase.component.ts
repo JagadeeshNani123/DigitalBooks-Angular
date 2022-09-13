@@ -10,6 +10,7 @@ export class PurchaseComponent implements OnInit {
 
   @Input() bookID:any;
   bookHistoryList : any =[];
+  bookNameList : any =[];
   display = "none";
 
   objpurchase : Purchase={
@@ -18,7 +19,6 @@ export class PurchaseComponent implements OnInit {
     bookId : 0,
     puchaseMode : '',
     purchaseDate: '',
-    isRefunded : 'Y'
   }
   constructor(private services: BookService) { }
 
@@ -28,17 +28,25 @@ export class PurchaseComponent implements OnInit {
   loadBookHistory(){
     
     this.services.GetBookHistory(this.objpurchase.emailId).subscribe(
-      response => {this.bookHistoryList = response;
-        this.display = "block";
+      response => 
+      {
+        this.bookHistoryList = response;
       }
     )
+  }
+
+
+  GetPurchasedBookList(){
+    for(let bookHistory of this.bookHistoryList){
+      this.bookNameList.AddRange(this.services.GetPurchasedBookList(bookHistory.bookId));
+    }
   }
 
   onSubmit(){
     this.objpurchase.bookId = this.bookID;
     this.services.PurchaseBook(this.objpurchase).subscribe(
       response => { alert("Book Purchased Successfully.");
-      this.loadBookHistory(); }
+       }
     )
   }
   onFocusOutEvent(event: any){

@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorComponent } from './components/author/author.component';
 import { BookComponent } from './components/book/book.component';
+import { ShowBooksComponent } from './components/book/show-books/show-books.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GuestComponent } from './components/guest/guest.component';
@@ -16,10 +17,12 @@ const routes: Routes = [
   {path:"book", component: BookComponent},
   {path:"login", component: LoginComponent},
   {path:"signup", component: SignupComponent},
-  {path:"dashboard/guest", component: GuestComponent},
+  {path:"dashboard/book", component: BookComponent},
   {path:"author", component: AuthorComponent},
   {path:"reader", component: ReaderComponent},
   {path:"dashboard", component: DashboardComponent},
+  {path:"showbooks", component: ShowBooksComponent},
+  {path:"guest", component: GuestComponent},
   {path:'', redirectTo:"/dashboard", pathMatch:'full'}
 ];
 

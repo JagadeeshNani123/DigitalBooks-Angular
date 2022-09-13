@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/bookmodel';
 import { BookService } from 'src/app/services/book.service';
 
@@ -23,6 +23,7 @@ export class GuestComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserID();
+    this.loadBookHistory();
   }
   purchaseClick(item:Book){
       this.book =item; 
@@ -40,7 +41,12 @@ export class GuestComponent implements OnInit {
       console.log(this.userEmailID);
     }
 
-    
+    loadBookHistory(){
+  
+      this.services.GetBookListReader(this.userEmailID).subscribe(
+        response => {this.searchResult = response; }
+      )
+    }
 
     readBookClick(item:Book){
       this.book =item; 

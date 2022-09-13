@@ -62,6 +62,7 @@ export class SignupComponent implements OnInit {
       .subscribe(
         response => {
           this.getAllUsers();
+          alert("Hi, "+this.user.userName+"You have successfully registerd with us");
           this.user = {
             userId:'0',
             userName:'',
@@ -71,7 +72,9 @@ export class SignupComponent implements OnInit {
             active: true,
             firstName:'',
             lastName:''
+
           };
+          
         }
       );
     }

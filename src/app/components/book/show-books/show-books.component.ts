@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from 'src/app/models/bookmodel';
 import { Category } from 'src/app/models/categorymodel';
@@ -8,11 +8,13 @@ import { CategoryService } from 'src/app/services/category.services';
 import { UsersService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css']
+  selector: 'app-show-books',
+  templateUrl: './show-books.component.html',
+  styleUrls: ['./show-books.component.css']
 })
-export class BookComponent implements OnInit {
+export class ShowBooksComponent implements OnInit {
+  @Input() searchResult:any;
+
   title = 'books';
   books:Book[] = [];
   book : Book = {
@@ -48,14 +50,18 @@ export class BookComponent implements OnInit {
     categoryName:''
   }
   
-  searchResult:any;  
+  
   selectedBook = "----";
   selectedAuthor="";
   selectedPublisher="";
   selectedCategory="";
 
-  SelectedBook(book:string){
-    this.selectedBook = book;
+  bookID : any;
+  display : string = 'none';
+  ModalTitle="Purchase Book";
+
+  SelectedBook(bookName:string){
+    this.selectedBook = bookName;
   }
 
 
@@ -86,7 +92,6 @@ export class BookComponent implements OnInit {
       response => { this.users = response}
     );
   }
-
   getAllCategories() {
     this.categoryService.getAllCategories()
     .subscribe(
@@ -101,11 +106,6 @@ export class BookComponent implements OnInit {
     );
   }
   
-searchBooks(){
-  this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.book.price).subscribe(
-     response => {this.searchResult = response; console.log(this.searchResult);}
-   );
-  }
   deleteUser(id:string){
     this.bookService.deleteBook(id)
     .subscribe(
@@ -120,19 +120,22 @@ searchBooks(){
 
   }
   
-  updateUser(book: Book){
-    this.bookService.updateBook(book)
-    .subscribe(
-      response => {
-        this.getAllBooks();
-      }
-    )
+  purchaseClick(item:Book, bookName: string){
+      this.book =item; 
+      this.book.bookName = bookName;
+      this.bookID= this.book.bookId;
+      this.display= 'block';
   }
+  onCloseHandled() {
+      this.display = "none";
+    }
 
-  getBookSerachList(bookName:string, authourName: string, publisher: string, publishedDate: Date ){
-
-    return this.bookService.getBookSerachList(bookName, authourName, publisher, publishedDate );
-
-}
+    searchBooks(){
+      this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.book.price).subscribe(
+         response => {this.searchResult = response; console.log(this.searchResult);}
+       );
+      
+      }
+      
 
 }

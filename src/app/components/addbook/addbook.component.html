@@ -1,38 +1,35 @@
+<form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="onSubmitClick()" >
+<div class="input-container">
+  <i class="fa fa-user icon" ><span>Book Name</span></i>
+  <input type="text" class="input-field"  placeholder="Enter Book Name" [(ngModel)]="book.bookName">
+</div>
+<div class="input-container">
+  <i class="fa fa-briefcase icon"><span> Category Name </span></i>
+    <!-- #category (change)="onSelected(category.value)" -->
+        <select class="input-field" #category (change)="onSelected(category.value)"  > 
+          <option value="0">--Select--</option>  
+            <option *ngFor="let Categories of CategoryList" value={{Categories.categoryId}}>                
+              {{Categories.categoryName}}  
+            </option>
+        </select>
+  
+</div>
+<div class="input-container">
+  <i class="fa fa-briefcase icon"><span> Price </span></i>
+ <input type="number" class="input-field" [(ngModel)]="book.price"   placeholder="Price">    
+</div>
+   <div class="input-container">
+    <i class="fa fa-briefcase icon"><span> Publisher Name</span></i>
+    <input type="text" class="input-field" [(ngModel)]="book.publisher"publisher  aria-describedby="publisher" placeholder="Enter Publisher">
+  </div>
+<div class="input-container">
+  <i class="fa fa-book icon"><span> Book Content </span></i>
+    <input type="text" class="input-field" [(ngModel)]="book.content"  aria-describedby="book content" placeholder="Enter Book Content">
+  </div>
+  <div class="input-container">
+    <i class='fa fa-calendar icon' ><span>Published Date</span></i>
+  <input class="input-field" type="date" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate">
+</div>
 
+<button type="submit" class="btn btn-primary">Submit</button> 
 
-     <div class="form-group">
-        <label for="bookName">Book Name</label>
-        <input type="text" class="form-control" id="bookName" aria-describedby="book name" [(ngModel)]="book.bookName" placeholder="Enter Book Name">
-      </div>
-    <div class="form-group row">
-          <label for="inputCategory" class="col-sm-2 col-form-label">Category</label>
-          <!-- #category (change)="onSelected(category.value)" -->
-              <select class="form-control" #category (change)="onSelected(category.value)"  > 
-                <option value="0">--Select--</option>  
-                  <option *ngFor="let Categories of CategoryList" value={{Categories.categoryId}}>                
-                    {{Categories.categoryName}}  
-                  </option>
-              </select>
-        
-      </div>
-    <div class="form-group row">
-              <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
-              
-                <input type="number" class="form-control" [(ngModel)]="book.price"   placeholder="Price">
-              
-      </div>
-         <div class="form-group">
-          <label for="publisher">Publisher</label>
-          <input type="text" class="form-control" id="publisher" [(ngModel)]="book.publisher"publisher  aria-describedby="publisher" placeholder="Enter Publisher">
-        </div>
-   <div class="form-group">
-          <label for="bookContent">Book Content</label>
-          <input type="text" class="form-control" id="bookContent" [(ngModel)]="book.content"  aria-describedby="book content" placeholder="Enter Book Content">
-        </div>
-          <div class="form-group">
-          <label for="publishedDate">Published Date</label>
-          <input type="datetime" class="form-control" id="publishedDate" [(ngModel)]="book.publishedDate"  aria-describedby="published date" placeholder="Enter Published Date">
-        </div>
-     
-      <button type="submit" class="btn btn-primary" (click)="onSubmitClick()">Submit</button> 
-    

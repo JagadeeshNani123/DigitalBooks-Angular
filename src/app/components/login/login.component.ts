@@ -1,3 +1,5 @@
+import { JsonPipe } from '@angular/common';
+import { verifyHostBindings } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/usermodel';
@@ -12,6 +14,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class LoginComponent implements OnInit {
   response :any;
+  logUser:any;
   user = {
     userId:'0',
     userName:'',
@@ -41,10 +44,13 @@ export class LoginComponent implements OnInit {
         if(this.response.token != ""){
           console.log(this.response);
            // store jwt token in local storage to keep user logged in between page refreshes
+           
            localStorage.setItem('token', this.response.token);
            localStorage.setItem('user', JSON.stringify(this.response.user));
-           
-          var user = this.userService.GetUserByCredentials(val);
+
+          
+          this.logUser = JSON.stringify( this.userService.GetUserByCredentials(val) );
+          var roleId = this.logUser.roleId;
           // this.nameEmitter.emit(true);  
           if(this.user.roleId == 1) //This is Author
           {
