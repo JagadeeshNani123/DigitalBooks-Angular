@@ -4,7 +4,7 @@
         
         <div class="input-container">
           <i class="fa fa-envelope icon"><span>Email Id</span></i>
-          <input class="input-field" type="text" placeholder="Enter email address" name="email" [(ngModel)]="objpurchase.emailId">
+          <input class="input-field" type="text" placeholder="Enter email address" name="email" [(ngModel)]="objpurchase.emailId"(focusout)="onFocusOutEvent($event)">
         </div>
         
         <div class="form-group">

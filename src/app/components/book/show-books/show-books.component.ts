@@ -125,6 +125,8 @@ export class ShowBooksComponent implements OnInit {
       this.book.bookName = bookName;
       this.bookID= this.book.bookId;
       this.display= 'block';
+
+      // localStorage.setItem('searchBookBookId', this.book.bookId);
   }
   onCloseHandled() {
       this.display = "none";

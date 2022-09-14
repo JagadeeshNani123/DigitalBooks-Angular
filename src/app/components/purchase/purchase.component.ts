@@ -12,12 +12,19 @@ export class PurchaseComponent implements OnInit {
 
   @Input() bookID:any;
   bookHistoryList : any =[];
-  bookNameList : any =[];
+  bookNameList : any;
   display = "none";
   today = new Date();
   changedDate = '';
   pipe = new DatePipe('en-US');
   emailPlaceHolder=''
+
+   purchaseObj={
+    "purchaseId": 0,
+    "emailId": "string",
+    "bookId": 0,
+    "paymentMode": "online"
+  }
 
   objpurchase : Purchase={
     purchaseId: 0,
@@ -42,25 +49,30 @@ export class PurchaseComponent implements OnInit {
       response => 
       {
         this.bookHistoryList = response;
+        
       }
+
     )
+    
+   
   }
 
 
   GetPurchasedBookList(){
     for(let bookHistory of this.bookHistoryList){
-      this.bookNameList.AddRange(this.services.GetPurchasedBookList(bookHistory.bookId));
+      this.bookNameList.push(this.services.GetPurchasedBookList(bookHistory.bookId));
     }
   }
 
   onSubmit(){
-    this.objpurchase.bookId = this.bookID;
-    this.objpurchase.puchaseMode='online';
-    
-    this.services.PurchaseBook(this.objpurchase).subscribe(
+    this.purchaseObj.bookId=this.bookID;
+    this.purchaseObj.emailId= this.objpurchase.emailId;
+    this.services.PurchaseBook(this.purchaseObj).subscribe(
       response => { alert("Book Purchased Successfully.");
        }
     )
+    
+    
   }
   onFocusOutEvent(event: any){
     this.loadBookHistory();

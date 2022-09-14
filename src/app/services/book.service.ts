@@ -44,7 +44,7 @@ export class BookService {
 
     // Search books
     SearchBooks(c:string, aID:string, p: number ):Observable<any[]>{
-      var url='Books/SearchBooks?'+'cID='+c+'&aID='+aID+'&price='+p;
+      var url='Books/SearchBooks/'+ c+"/"+aID+"/"+p;
         return this.https.get<any>(this.baseUrl+url);
     }
 
@@ -69,11 +69,11 @@ export class BookService {
 
     //Book History
     GetBookHistory(emailId :string):Observable<any>{
-        return this.https.get<any>(this.baseUrl +"Purchases/BookHistory?emailId="+emailId);
+        return this.https.get<any>(this.baseUrl +"Purchases/BookHistory/"+emailId);
     }
 
     GetPurchasedBookList(id :number):Observable<any>{
-      return this.https.get<any>(this.baseUrl +"Books/"+ id);
+      return this.https.get<Book>(this.baseUrl +"Books/"+ id);
   }
 
 
@@ -110,8 +110,7 @@ export class BookService {
     return this.https.get<any>(this.baseUrl +"Books/UpdateBookStatus/"+bookID+"/"+userID+"/"+status);
 }
 PurchaseBook(purchases : any):Observable<Purchase>{
-  console.log('purchase Url:'+ this.baseUrl + "Purchases");
-    return this.https.post<Purchase>('https://localhost:44392/api/Purchases',purchases);
+    return this.https.post<Purchase>(this.baseUrl+'Purchases',purchases);
   //
 }
     

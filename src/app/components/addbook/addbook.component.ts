@@ -24,7 +24,7 @@ export class AddbookComponent implements OnInit {
   }
   books:Book[] = [];
   book : Book = {
-    bookId: '1',
+    bookId: '0',
     bookName: '',
     categoryId: '',
     price: 0,
@@ -75,7 +75,8 @@ export class AddbookComponent implements OnInit {
     this.service.SaveBook(this.book).subscribe(
       response => { 
         alert('Book Added Successfully');
-        this.router.navigate(['/author']);     
+        this.router.navigate(['/author']); 
+        window.location.reload();    
     }
     );
   }
