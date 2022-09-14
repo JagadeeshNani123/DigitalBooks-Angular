@@ -11,9 +11,12 @@ export class AuthorComponent implements OnInit {
   ModalTitle:string="";
   display = "none";
   userID : string ='';
+  isTesting : boolean =true;
+  book : any;
   constructor(private service: BookService) { }
 
   ngOnInit(): void {
+    
     this.service.CheckUserLoggedInOrNot();
     this.GetUserID();
     this.loadBooks();    
@@ -37,5 +40,15 @@ export class AuthorComponent implements OnInit {
   
     onCloseHandled() {
       this.display = "none";
+    }
+
+    activeInactiveClick(item:any){
+      this.book =item; 
+      this.book.active = !item.active;
+      console.log("item Value =" + JSON.stringify(item));
+      console.log(this.book);
+      this.service.UpdateBookStatus(this.book.bookId,this.userID,this.book.active).subscribe(
+        response => { alert('Status updated Successfully.'); }
+      )
     }
 }

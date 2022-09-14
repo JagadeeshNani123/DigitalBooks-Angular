@@ -27,17 +27,12 @@ export class HeaderComponent implements OnInit {
  openModal() {
    this.ModalTitle ="Sign Up";
    this.SignupModaldisplay = "block";
-   this.display = "none";
  }
 
  openSignInModal() {
    this.ModalTitle ="Sign In";
-   this.display = "block";
-   this.SignupModaldisplay = "none";
  }
  onCloseHandled() {
-   this.display = "none";
-   this.SignupModaldisplay = "none";
  }
 
  ngOnInit(): void {
@@ -45,7 +40,6 @@ export class HeaderComponent implements OnInit {
     this.isUserLoggedIn(this.userLoggedIn);
    this.isLoggedIn = this.userLoggedIn;
    this.getUserNameAndRole();
-    console.log("in ngonInit =" + this.userLoggedIn);
  }
 
  signOutClick() {
@@ -54,23 +48,20 @@ export class HeaderComponent implements OnInit {
    localStorage.removeItem('user');
    this.isUserLoggedIn(false);
    this.UserName='';
-   this.SignupModaldisplay = "none";
-   this.showSignInSignUp =true;
    this.router.navigate(['/login']).then(() => {
     this.isLoggedIn=false;
    });          
  } 
 
  isUserLoggedIn(loggedIn:boolean){
-   if(loggedIn){
-     this.showSignInSignUp =false;
-   }
-   else{
-     this.showSignInSignUp =true;
-   }
    
-   console.log("showSignInSignUp =" + this.showSignInSignUp);
-   console.log("loggedIn =" + loggedIn);
+  if(loggedIn){
+    this.showSignInSignUp =false;
+  }
+  else{
+    this.showSignInSignUp =true;
+  }
+   
  }
 
  getUserNameAndRole(){

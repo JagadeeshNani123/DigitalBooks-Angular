@@ -23,6 +23,7 @@ export class ReaderComponent implements OnInit {
     constructor(private services: BookService){}
 
     ngOnInit(): void {
+      
       this.GetUserID();
       this.loadBookHistory();
     }
@@ -43,8 +44,15 @@ export class ReaderComponent implements OnInit {
       }
 
       loadBookHistory(){
-    
+        
         this.services.GetBookListReader(this.userEmailID).subscribe(
+          response => {this.searchResult = response; }
+        )
+      }
+
+      loadAllBooks(){
+    
+        this.services.LoadAllBooks().subscribe(
           response => {this.searchResult = response; }
         )
       }
@@ -52,7 +60,7 @@ export class ReaderComponent implements OnInit {
       readBookClick(item:Book){
         this.book =item; 
         console.log("item =" +JSON.stringify(item));
-        if(item.Active)
+        if(item.active)
         {
         this.bookContent= this.book.bookContent;
         this.readBookdisplay= 'block';

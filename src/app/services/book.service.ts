@@ -56,20 +56,16 @@ export class BookService {
         }
 
         // not logged in so redirect to sign page with the return url
-         this.router.navigate(['/searchbooks']);     
+         this.router.navigate(['/dashboard']);     
         return false;
     }
 
     // Save book
     SaveBook(book : Book):Observable<Book>{
-        return this.https.post<Book>(this.baseUrl + "Book",book);
+        return this.https.post<Book>(this.baseUrl + "Books",book);
     }
 
-    // Purchase 
-    PurchaseBook(purchases : Purchase):Observable<Purchase>{
-      console.log('purchase Url:'+ this.baseUrl + "Purchases");
-        return this.https.post<Purchase>(this.baseUrl + "Purchases",purchases);
-    }
+    
 
     //Book History
     GetBookHistory(emailId :string):Observable<any>{
@@ -85,6 +81,10 @@ export class BookService {
     GetBookListReader(emailId :string):Observable<any>{
         return this.https.get<any>(this.baseUrl +"Purchases/GetBooksWithStatus?EmailId="+emailId);
     }
+
+    LoadAllBooks():Observable<any>{
+      return this.https.get<any>(this.baseUrl +"Books/GetALllBooks");
+  }
 
   getBookSerachList(bookName:string, authourName: string, publisher: string, publishedDate: Date ):Observable<Book>{
     var id = 'bookName='+bookName+'&authorName='+authourName+'&publisher='+publisher+'&publishedDate='+publishedDate;
@@ -104,5 +104,15 @@ export class BookService {
   updateBook(book: Book):Observable<Book>{
     return this.https.put<Book>(this.baseUrl +'/'+book.bookId, book);
   }
+
+   //To Update the book Status
+   UpdateBookStatus(bookID:string,userID:string,status:boolean):Observable<any>{
+    return this.https.get<any>(this.baseUrl +"Books/UpdateBookStatus/"+bookID+"/"+userID+"/"+status);
+}
+PurchaseBook(purchases : any):Observable<Purchase>{
+  console.log('purchase Url:'+ this.baseUrl + "Purchases");
+    return this.https.post<Purchase>('https://localhost:44392/api/Purchases',purchases);
+  //
+}
     
 }

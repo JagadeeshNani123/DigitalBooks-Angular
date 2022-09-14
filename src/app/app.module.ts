@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GuestComponent } from './components/guest/guest.component';
@@ -14,6 +14,9 @@ import { ReaderComponent } from './components/reader/reader.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { AddbookComponent } from './components/addbook/addbook.component';
 import { ShowBooksComponent } from './components/book/show-books/show-books.component';
+import { BookService } from './services/book.service';
+import { RouterModule } from '@angular/router';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,9 +36,13 @@ import { ShowBooksComponent } from './components/book/show-books/show-books.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([])
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true},
+    BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,7 +26,7 @@ export class ShowBooksComponent implements OnInit {
     userId :'',
     publishedDate : '',
     content :'',
-    Active : true,
+    active : true,
     createdDate : '',
     createdby : '',
     modifiedDate : '',

@@ -3,10 +3,9 @@
 <div class="topnav">
   <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
   <a routerLink="signup" routerLinkActive="active" ><i class="fa fa-fw fa-user"></i> Sign up</a>
-  <a routerLink="login" routerLinkActive="active" ><i class="fa fa-fw fa-user"></i> login</a>
-  <a class="signout" *ngIf="isLoggedIn"  (click)="signOutClick()" >Sign Out</a>
+  <a routerLink="login" routerLinkActive="active" ><i class="fa fa-fw fa-user"></i> Login</a>
+  <a class="signout" *ngIf="isLoggedIn"  (click)="signOutClick()" > <i class="fa fa-fw fa-user"></i>Sign Out</a>
   <div class="username" *ngIf="isLoggedIn"> {{UserName}}</div>
   
 </div>
 
-<router-outlet></router-outlet>

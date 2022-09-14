@@ -24,7 +24,7 @@ export class BookComponent implements OnInit {
     userId :'',
     publishedDate : '',
     content :'',
-    Active : true,
+    active : true,
     createdDate : '',
     createdby : '',
     modifiedDate : '',

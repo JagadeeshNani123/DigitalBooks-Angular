@@ -17,21 +17,27 @@ export class PurchaseComponent implements OnInit {
   today = new Date();
   changedDate = '';
   pipe = new DatePipe('en-US');
+  emailPlaceHolder=''
 
   objpurchase : Purchase={
     purchaseId: 0,
     emailId : '',
     bookId : 0,
-    puchaseMode : '',
-    purchaseDate: ''
+    puchaseMode : ''
   }
   constructor(private services: BookService) { }
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem('user') || '');
+    if(user!='undefined')
+    {
+      this.emailPlaceHolder=user.emailId;
+       this.objpurchase.emailId= user.emailId;
+    }
   }
 
   loadBookHistory(){
-    
+   
     this.services.GetBookHistory(this.objpurchase.emailId).subscribe(
       response => 
       {
@@ -50,9 +56,7 @@ export class PurchaseComponent implements OnInit {
   onSubmit(){
     this.objpurchase.bookId = this.bookID;
     this.objpurchase.puchaseMode='online';
-    let changedFormat = this.pipe.transform(this.today, 'dd-MM-YYYY')?.toString();
-    if(changedFormat!=undefined)
-    this.objpurchase.purchaseDate = '2022-09-13T16:25:34.652Z';
+    
     this.services.PurchaseBook(this.objpurchase).subscribe(
       response => { alert("Book Purchased Successfully.");
        }

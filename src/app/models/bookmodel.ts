@@ -7,7 +7,7 @@ export interface Book {
       userId :string;
       publishedDate :string;
       content :string;
-      Active : boolean;
+      active : boolean;
       createdDate : string;
       createdby : string;
       modifiedDate : string;

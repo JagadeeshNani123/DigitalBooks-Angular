@@ -32,7 +32,7 @@ export class AddbookComponent implements OnInit {
     userId: '',
     publishedDate: '',
     content: '',
-    Active: true,
+    active: true,
     createdDate: '',
     createdby: '',
     modifiedDate: '',

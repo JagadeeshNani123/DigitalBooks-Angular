@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     userId :'',
     publishedDate : '',
     content :'',
-    Active : true,
+    active : true,
     createdDate : '',
     createdby : '',
     modifiedDate : '',
@@ -38,7 +38,16 @@ export class DashboardComponent implements OnInit {
     firstName:'',
     lastName:''
   }
-  
+  isLoggedIn = false;
+  UserName:string="Welcome";
+ ModalTitle:string="";
+ ActivateSignupComp :boolean=false;
+
+ userLoggedIn :boolean =false;
+ showSignInSignUp : boolean = true;
+
+ display = "none";
+ SignupModaldisplay ="none";
     
   selected = "----"
   
@@ -52,7 +61,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBooks();
     this.getAllUsers();
-  }
+    this.userLoggedIn = this.bookService.CheckUserLoggedInOrNot();
+    this.isUserLoggedIn(this.userLoggedIn);
+   this.isLoggedIn = this.userLoggedIn;
+    console.log("in ngonInit =" + this.userLoggedIn);
+ }
 
   getAllUsers() {
     this.userService.getAllUsers()
@@ -90,4 +103,17 @@ searchBooks(){
     return this.bookService.getBookSerachList(bookName, authourName, publisher, publishedDate );
 
 }
+
+isUserLoggedIn(loggedIn:boolean){
+  if(loggedIn){
+    this.showSignInSignUp =false;
+  }
+  else{
+    this.showSignInSignUp =true;
+  }
+  
+  console.log("showSignInSignUp =" + this.showSignInSignUp);
+  console.log("loggedIn =" + loggedIn);
+}
+
 }
