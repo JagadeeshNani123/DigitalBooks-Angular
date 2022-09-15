@@ -65,7 +65,7 @@
                       <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
                     </div>
            <div class="modal-body">
-               <p>{{bookContent}}</p>
+            <app-show-purchased-book-history [purchasedBookHistory]="searchResult"></app-show-purchased-book-history>
                 <div class="modal-footer">
                       <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
                     </div>

@@ -14,6 +14,7 @@ export class PurchaseComponent implements OnInit {
   bookHistoryList : any =[];
   purchasedBookHistory : any=[];
   display = "none";
+  readBookdisplay='none';
   today = new Date();
   changedDate = '';
   pipe = new DatePipe('en-US');
@@ -75,5 +76,9 @@ export class PurchaseComponent implements OnInit {
   onFocusOutEvent(event: any){
     this.loadBookHistory();
  }
- 
+
+ onCloseHandled() {
+  this.display = "none";
+  this.readBookdisplay ="none";
+ }
 }

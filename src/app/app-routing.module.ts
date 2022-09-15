@@ -20,9 +20,7 @@ const routes: Routes = [
   {path:"dashboard/book", component: BookComponent},
   {path:"author", component: AuthorComponent},
   {path:"reader", component: ReaderComponent},
-  {path:"dashboard", component: DashboardComponent},
   {path:"showbooks", component: ShowBooksComponent},
-  {path:"guest", component: GuestComponent},
   {path:'', redirectTo:"/dashboard", pathMatch:'full'}
 ];
 
