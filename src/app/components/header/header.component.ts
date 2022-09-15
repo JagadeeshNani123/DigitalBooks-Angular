@@ -65,9 +65,13 @@ export class HeaderComponent implements OnInit {
  }
 
  getUserNameAndRole(){
-  console.log(localStorage.getItem('user'));
   let user = JSON.parse(localStorage.getItem('user') || '');
+  let role = localStorage.getItem('role');
   this.UserName = "Welcome "+user.userName;
+  if(role!='undefined')
+  {
+    this.UserName = this.UserName+' '+role;
+  }
  }
 
 }

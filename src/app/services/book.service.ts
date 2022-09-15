@@ -72,8 +72,8 @@ export class BookService {
         return this.https.get<any>(this.baseUrl +"Purchases/BookHistory/"+emailId);
     }
 
-    GetPurchasedBookList(id :number):Observable<any>{
-      return this.https.get<Book>(this.baseUrl +"Books/"+ id);
+    GetPurchasedBookList(emailId :string):Observable<any>{
+      return this.https.get<any>(this.baseUrl +"Purchases/GetPurchasedBookHistory?EmailId="+emailId);
   }
 
 

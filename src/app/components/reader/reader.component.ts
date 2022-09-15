@@ -40,7 +40,7 @@ export class ReaderComponent implements OnInit {
       GetUserID(){
         let values = JSON.parse(localStorage.getItem("user") || '');
         this.userEmailID = values.emailId;
-        console.log(this.userEmailID);
+        localStorage.setItem('readerEmailId',this.userEmailID);
       }
 
       loadBookHistory(){

@@ -12,12 +12,13 @@ export class PurchaseComponent implements OnInit {
 
   @Input() bookID:any;
   bookHistoryList : any =[];
-  bookNameList : any;
+  purchasedBookHistory : any=[];
   display = "none";
   today = new Date();
   changedDate = '';
   pipe = new DatePipe('en-US');
   emailPlaceHolder=''
+  emailId ='';
 
    purchaseObj={
     "purchaseId": 0,
@@ -35,33 +36,30 @@ export class PurchaseComponent implements OnInit {
   constructor(private services: BookService) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem('user') || '');
-    if(user!='undefined')
-    {
-      this.emailPlaceHolder=user.emailId;
-       this.objpurchase.emailId= user.emailId;
-    }
+   
   }
 
   loadBookHistory(){
-   
+   this.display='block';
     this.services.GetBookHistory(this.objpurchase.emailId).subscribe(
       response => 
       {
         this.bookHistoryList = response;
-        
+        this.GetPurchasedBookList();
       }
-
     )
-    
    
   }
 
 
   GetPurchasedBookList(){
-    for(let bookHistory of this.bookHistoryList){
-      this.bookNameList.push(this.services.GetPurchasedBookList(bookHistory.bookId));
-    }
+    this.services.GetPurchasedBookList(this.objpurchase.emailId).subscribe(
+      response => 
+      {
+        this.purchasedBookHistory =  response;
+        
+      }
+    )
   }
 
   onSubmit(){

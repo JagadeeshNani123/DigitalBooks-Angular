@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
     }
     this.service.Login(val).subscribe(
       response => {  this.response = response; 
-       
         if(this.response.token != ""){
           console.log(this.response);
            // store jwt token in local storage to keep user logged in between page refreshes
@@ -54,12 +53,17 @@ export class LoginComponent implements OnInit {
           // this.nameEmitter.emit(true);  
           if(this.response.user.roleId == 1) //This is Author
           {
+             
+           localStorage.setItem('role', '- Author');
+
           this.router.navigate(['/author']).then(
             ()=>{window.location.reload()}
+
           )   
           }
           else{ 
             // This is Reader
+            localStorage.setItem('role', '- Reader');
             this.router.navigate(['/reader']).then(
               ()=>{window.location.reload()}
             )  
