@@ -6,6 +6,7 @@ import { User } from 'src/app/models/usermodel';
 import { BookService } from 'src/app/services/book.service';
 import { CategoryService } from 'src/app/services/category.services';
 import { UsersService } from 'src/app/services/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-book',
@@ -13,6 +14,8 @@ import { UsersService } from 'src/app/services/user.service';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
+  registerForm!: FormGroup;
+  submitted = false;
   title = 'books';
   books:Book[] = [];
   book : Book = {
@@ -42,7 +45,7 @@ export class BookComponent implements OnInit {
     lastName:''
   }
 
-  categories:Category[] = [];
+  CategoryList:any[] =[];
   category : Category = {
     categoryId:'0',
     categoryName:''
@@ -51,7 +54,7 @@ export class BookComponent implements OnInit {
   searchResult:any;  
   selectedBook = "----";
   selectedAuthor="";
-  selectedPublisher="";
+  selectedPriceRange=0;
   selectedCategory="";
 
   SelectedBook(book:string){
@@ -63,22 +66,34 @@ export class BookComponent implements OnInit {
     this.selectedAuthor = author;
   }
 
-  SelectedPublisher(publisher:string){
-    this.selectedPublisher = publisher;
+  SelectedPrice(price:number){
+    this.selectedPriceRange=price;
+    this.book.price = price;
   }
 
-  SelectedCategory(category:string){
-    this.selectedCategory = category;
-  }
+  onSelected(value:string): void {
+		this.selectedCategory = value;
+	}
   constructor(private bookService : BookService, private userService : UsersService,
-    private categoryService : CategoryService, public router: Router){
+    private categoryService : CategoryService, public router: Router, private formBuilder: FormBuilder){
   }
 
   ngOnInit(): void {
     this.getAllBooks();
     this.getAllUsers();
-    this.getAllCategories();
+    this.loadCategoryList();
+    this.registerForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      bookmaster: ['', Validators.required],
+      authormaster: ['', Validators.required],
+      publishermaster: ['', Validators.required],
+      publisheddate: ['', Validators.requiredTrue],
+      categorymaster: ['', Validators.requiredTrue],
+      itemAmount: ['', Validators.requiredTrue]
+  });
   }
+
+  get f() { return this.registerForm.controls; }
 
   getAllUsers() {
     this.userService.getAllUsers()
@@ -87,10 +102,10 @@ export class BookComponent implements OnInit {
     );
   }
 
-  getAllCategories() {
-    this.categoryService.getAllCategories()
+  loadCategoryList() {
+    this.bookService.GetAllCategory()
     .subscribe(
-      response => { this.categories = response}
+      response => { this.CategoryList = response}
     );
   }
 
@@ -102,6 +117,12 @@ export class BookComponent implements OnInit {
   }
   
 searchBooks(){
+  this.submitted = true;
+
+  // stop here if form is invalid
+  if (this.registerForm.invalid) {
+      return;
+  }
   this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.book.price).subscribe(
      response => {this.searchResult = response; console.log(this.searchResult);}
    );
@@ -133,6 +154,10 @@ searchBooks(){
 
     return this.bookService.getBookSerachList(bookName, authourName, publisher, publishedDate );
 
+}
+onReset() {
+  this.submitted = false;
+  this.registerForm.reset();
 }
 
 }

@@ -38,23 +38,11 @@
 </table>
 
 
- <!-- Purchase Modal -->
- <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-    <div class="modal-dialog" role="document">
-          <div class="modal-content">
-                <div class="modal-header">
-                      <h4 class="modal-title">{{ModalTitle}}</h4>
-                      <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-                    </div>
-           <div class="modal-body">
-               <app-purchase [bookID]="bookID"></app-purchase>
-                    </div>
-                <div class="modal-footer">
-                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
-                    </div>
-       </div>
-        </div>
-</div>
+ <!-- Book History -->
+ <div >
+ <app-show-purchased-book-history [purchasedBookHistory]="bookHistoryList"></app-show-purchased-book-history>
+    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+  </div>
 
  <!-- Read Book Modal -->
  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':readBookdisplay}">
@@ -65,7 +53,7 @@
                       <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
                     </div>
            <div class="modal-body">
-            <app-show-purchased-book-history [purchasedBookHistory]="searchResult"></app-show-purchased-book-history>
+           
                 <div class="modal-footer">
                       <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
                     </div>

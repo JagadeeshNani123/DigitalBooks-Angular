@@ -1,60 +1,52 @@
-<form #form="ngForm" style="max-width:500px;margin:auto" (ngSubmit)="searchBooks()" >
-    <h2>Search Book</h2>
-    <div >
-        <i class="fa fa-book icon"><label> Book Name </label></i>
-        <select #Book (change)="SelectedBook(Book.value)">
-          <option value="default">Select Book Name</option>
-          <option *ngFor="let book of books" [value]="book.bookName">
-              {{book.bookName}}
-          </option>
-         
-        </select>
-    </div>
-    
-  
-    <div >
-      <i class="fa fa-user icon"><label> Author Name </label></i>
-      <select #Author (change)="SelectedAuthor(Author.value)">
-        <option value="default">Select Author</option>
-        <option *ngFor="let author of users" [value]="author.roleId">
-            {{author.userName}}
-        </option>
-      </select>
-      
-    </div>
-    
-    <label></label>
-    <div >
-      <i class="fa fa-briefcase icon"><label> Publisher Name </label></i>
-      <select #Publisher (change)="SelectedPublisher(Publisher.value)" >
-        <option value="default">Select Publisher</option>
-        <option *ngFor="let book of books" [value]="book.publisher">
-            {{book.publisher}}
-        </option>
-    </select>
-    <label></label>
-    </div>
-    <div >
-      <i class="fa fa-briefcase icon"><label> Category Name </label></i>
-      <select #Category (change)="SelectedCategory(Category.value)" >
-        <option value="default">Select Category</option>
-        <option *ngFor="let category of categories" [value]="category.categoryId">
-            {{category.categoryName}}
-        </option>
-    </select>
-      
-    </div>
-  
-    <div >
-        <i class='fa fa-calendar icon' ><label>Published Date</label></i>
-      <input class="input-field" type="date" placeholder="Release date" name="usrnm" [(ngModel)]="book.publishedDate" required>
-    </div>
-    <button type="submit"> <i class="fa fa-search icon">Serach Books</i></button>
-  </form>
- 
-  <br/>
- <app-show-books [searchResult]="searchResult"></app-show-books>
 
- <br/>
- <br/>
- <br/>
+<div class="card m-3">
+  <h5 class="card-header">Search Book</h5>
+  <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="searchBooks()">
+            <div class="form-row">
+                <div class="form-group col">
+                  <label> Category Name </label>
+     <!-- #category (change)="onSelected(category.value)" -->
+         <select #category  formControlName="bookmaster" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['bookmaster'].errors }" (change)="onSelected(category.value)"  > 
+           <option value="0">--Select Category name--</option>  
+             <option *ngFor="let Categories of CategoryList" value={{Categories.categoryId}}>                
+               {{Categories.categoryName}}  
+             </option>
+         </select>
+      <div *ngIf="submitted && f['bookmaster'].errors" class="invalid-feedback">
+                     <div *ngIf="f['bookmaster'].errors['required']"> Please select Category Name</div>
+                 </div>
+                 </div>
+           
+            </div>
+            <div class="form-row">
+             
+            
+              <div class="form-group col">
+                <label> Author Name </label>
+                <select #Author formControlName="authormaster" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['authormaster'].errors }" (change)="SelectedAuthor(Author.value)">
+                  <option value="default">--Select Author--</option>
+                  <option *ngFor="let author of users" [value]="author.roleId">
+                      {{author.userName}}
+                  </option>
+                </select>
+              <div *ngIf="submitted && f['authormaster'].errors" class="invalid-feedback">
+                            <div *ngIf="f['authormaster'].errors['required']"> Please select Author Name</div>
+                 </div>
+              </div>
+            </div>
+              <div class="form-row">
+  <div class="form-group col">
+    <label>Price</label>
+
+    <input type="number" required #itemAmount="ngModel" name="itemAmount" [class.is-invalid]="itemAmount.invalid && itemAmount.touched" class="form-control" [(ngModel)]="book.price" placeholder="Approval Limit" min="1" pattern="^[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$" /> 
+  </div>
+</div>
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Search Books</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

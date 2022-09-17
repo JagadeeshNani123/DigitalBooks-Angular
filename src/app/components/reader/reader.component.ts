@@ -19,6 +19,13 @@ export class ReaderComponent implements OnInit {
     ModalReadBookTitle : string ="Read Book";
     bookContent : string ="";
     userEmailID : string ="";
+    purchaseObj={
+      "purchaseId": 0,
+      "emailId": "string",
+      "bookId": 0,
+      "paymentMode": "online"
+    }
+    bookHistoryList : any =[];
 
     constructor(private services: BookService){}
 
@@ -26,12 +33,33 @@ export class ReaderComponent implements OnInit {
       
       this.GetUserID();
       this.loadBookHistory();
+      this.GetPurchasedBookList();
+      this.display= 'block';
     }
     purchaseClick(item:Book){
         this.book =item; 
         this.bookID= this.book.bookId;
-        this.display= 'block';
+        this.purchaseObj.bookId=this.bookID;
+        this.purchaseObj.emailId= this.userEmailID;
+        this.services.PurchaseBook(this.purchaseObj).subscribe(
+      response => { alert("Book Purchased Successfully.");
+       }
+    )
+    
     }
+
+    GetPurchasedBookList(){
+      this.purchaseObj.bookId=this.bookID;
+        this.purchaseObj.emailId= this.userEmailID;
+      this.services.GetPurchasedBookList(this.purchaseObj.emailId).subscribe(
+        response => 
+        {
+          this.bookHistoryList =  response;
+          
+        }
+      )
+    }
+
     onCloseHandled() {
         this.display = "none";
         this.readBookdisplay ="none";
