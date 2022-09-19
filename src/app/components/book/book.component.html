@@ -39,7 +39,10 @@
   <div class="form-group col">
     <label>Price</label>
 
-    <input type="number" required #itemAmount="ngModel" name="itemAmount" [class.is-invalid]="itemAmount.invalid && itemAmount.touched" class="form-control" [(ngModel)]="book.price" placeholder="Approval Limit" min="1" pattern="^[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*$" /> 
+    <input type="number" formControlName="pricecontrol" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['pricecontrol'].errors }" name="bookprice"  [(ngModel)]="book.price" />
+    <div *ngIf="submitted && f['pricecontrol'].errors" class="invalid-feedback">
+        <div *ngIf="f['pricecontrol'].errors['required']">Enter some price</div>
+    </div>             
   </div>
 </div>
             <div class="text-center">
@@ -50,3 +53,9 @@
         </form>
     </div>
 </div>
+<br/>
+<app-show-books [searchResult]="searchResult"></app-show-books>
+
+<br/>
+<br/>
+<br/>

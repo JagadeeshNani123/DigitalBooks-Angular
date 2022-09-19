@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class AuthorComponent implements OnInit {
   userID : string ='';
   isTesting : boolean =true;
   book : any;
-  constructor(private service: BookService) { }
+  constructor(private service: BookService, public router:Router) { }
 
   ngOnInit(): void {
     
@@ -34,8 +35,7 @@ export class AuthorComponent implements OnInit {
     }
 
     openModal() {
-      this.ModalTitle ="Add Book";
-      this.display = "block";
+      this.router.navigate(['/addbook']);
     }
   
     onCloseHandled() {

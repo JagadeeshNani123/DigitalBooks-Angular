@@ -42,7 +42,7 @@ export class ReaderComponent implements OnInit {
         this.purchaseObj.bookId=this.bookID;
         this.purchaseObj.emailId= this.userEmailID;
         this.services.PurchaseBook(this.purchaseObj).subscribe(
-      response => { alert("Book Purchased Successfully.");
+      response => { let abc="Book Purchased Successfully.";
        }
     )
     

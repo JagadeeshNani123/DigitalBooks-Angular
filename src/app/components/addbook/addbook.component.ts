@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./addbook.component.css']
 })
 export class AddbookComponent implements OnInit {
+  alertMessage:string='';
   registerForm!: FormGroup;
   submitted = false;
   signedUser:string='';
@@ -79,13 +80,14 @@ export class AddbookComponent implements OnInit {
     this.GetUserID();
     this.loadCategoryList();
     this.registerForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      bookmaster: ['', Validators.required],
+      bookname: ['', Validators.required],
+      bookcnt: ['', Validators.required],
       authormaster: ['', Validators.required],
-      publishermaster: ['', Validators.required],
-      publisheddate: [false, Validators.requiredTrue],
-      categorymaster: [false, Validators.requiredTrue],
-      pricemaster: [false, Validators.requiredTrue]
+      publishername: ['', Validators.required],
+      publisheddate: ['', Validators.required],
+      bookmaster: ['', Validators.required],
+      pricecontrol: ['', Validators.required],
+      acceptTerms: [false, Validators.requiredTrue]
   });
 
   this.signedUser= this.user.userName;;
@@ -101,17 +103,25 @@ export class AddbookComponent implements OnInit {
   }
 
   onSubmitClick(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (!this.registerForm.invalid) {
+        return;
+    }
     this.book.createdby=this.user.userId;
     this.book.modifiedby=this.user.userId;
     this.book.modifiedDate=this.book.publishedDate;
     this.book.createdDate=this.book.publishedDate;
     this.service.SaveBook(this.book).subscribe(
       response => { 
-        alert('Book Added Successfully');
-        this.router.navigate(['/author']); 
-        window.location.reload();    
+
+        this.alertMessage = "Congractulations you have succesfully added book";
+        localStorage.setItem('alertFrom', this.alertMessage);
+        this.router.navigate(['/congractulations']); 
     }
+    
     );
+    
   }
 
   onReset() {

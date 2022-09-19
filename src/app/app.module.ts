@@ -18,6 +18,7 @@ import { BookService } from './services/book.service';
 import { RouterModule } from '@angular/router';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ShowPurchasedBookHistoryComponent } from './components/show-purchased-book-history/show-purchased-book-history.component';
+import { CongractulationsComponent } from './components/congractulations/congractulations.component';
 
 @NgModule({
   declarations: [
@@ -32,16 +33,15 @@ import { ShowPurchasedBookHistoryComponent } from './components/show-purchased-b
     PurchaseComponent,
     AddbookComponent,
     ShowBooksComponent,
-    ShowPurchasedBookHistoryComponent
+    ShowPurchasedBookHistoryComponent,
+    CongractulationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot([]),
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true},

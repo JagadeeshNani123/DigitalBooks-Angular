@@ -86,10 +86,8 @@ export class BookComponent implements OnInit {
       title: ['', Validators.required],
       bookmaster: ['', Validators.required],
       authormaster: ['', Validators.required],
-      publishermaster: ['', Validators.required],
-      publisheddate: ['', Validators.requiredTrue],
-      categorymaster: ['', Validators.requiredTrue],
-      itemAmount: ['', Validators.requiredTrue]
+      categorymaster: ['', Validators.required],
+      pricecontrol: ['', Validators.required]
   });
   }
 
@@ -120,7 +118,7 @@ searchBooks(){
   this.submitted = true;
 
   // stop here if form is invalid
-  if (this.registerForm.invalid) {
+  if (!this.registerForm.invalid) {
       return;
   }
   this.bookService.SearchBooks(this.selectedCategory,this.selectedAuthor,this.book.price).subscribe(

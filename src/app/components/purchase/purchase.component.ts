@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
 import { Purchase } from 'src/app/models/purchasemodel';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-purchase',
   templateUrl: './purchase.component.html',
@@ -11,6 +12,7 @@ export class PurchaseComponent implements OnInit {
   [x: string]: any;
 
   @Input() bookID:any;
+  alertMessage="";
   bookHistoryList : any =[];
   purchasedBookHistory : any=[];
   display = "none";
@@ -34,10 +36,9 @@ export class PurchaseComponent implements OnInit {
     bookId : 0,
     puchaseMode : ''
   }
-  constructor(private services: BookService) { }
+  constructor(private services: BookService, public router:Router) { }
 
   ngOnInit(): void {
-   
   }
 
   loadBookHistory(){
@@ -54,6 +55,7 @@ export class PurchaseComponent implements OnInit {
 
 
   GetPurchasedBookList(){
+    this.display='block';
     this.services.GetPurchasedBookList(this.objpurchase.emailId).subscribe(
       response => 
       {
@@ -67,10 +69,15 @@ export class PurchaseComponent implements OnInit {
     this.purchaseObj.bookId=this.bookID;
     this.purchaseObj.emailId= this.objpurchase.emailId;
     this.services.PurchaseBook(this.purchaseObj).subscribe(
-      response => { alert("Book Purchased Successfully.");
+      response => { 
+        this.alertMessage = "Congractulations you have succesfully purchased book";
+        localStorage.setItem('alertFrom', this.alertMessage); 
+        localStorage.setItem('userEmailD', this.purchaseObj.emailId);
+        this.router.navigate(['/showpurchasedbooks']); 
        }
+
     )
-    
+   
     
   }
   onFocusOutEvent(event: any){

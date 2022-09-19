@@ -5,6 +5,7 @@ import { Role } from 'src/app/models/rolemodel';
 import { RoleService } from 'src/app/services/role.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './signup.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -40,7 +41,8 @@ export class SignupComponent implements OnInit {
     this.userRoleId = e;
   }
 
-  constructor(private signUpService : UsersService, private roleService: RoleService, private formBuilder: FormBuilder){
+  constructor(private signUpService : UsersService, private roleService: RoleService, 
+    private formBuilder: FormBuilder, public router:Router){
   }
 
   ngOnInit() {
@@ -94,6 +96,8 @@ export class SignupComponent implements OnInit {
         response => {
           this.getAllUsers();
           this.signedUser=this.user.userName;
+          let alertMessage ="Congractulation. Successfully signed with us.\n Your user name: ";
+          localStorage.setItem('alertFrom', alertMessage+this.signedUser);
           this.display = "block";
           this.user = {
             userId:'0',
@@ -106,6 +110,7 @@ export class SignupComponent implements OnInit {
             lastName:''
 
           };
+          this.router.navigate(['/congractulations']); 
          
         }
         
