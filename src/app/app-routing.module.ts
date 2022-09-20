@@ -16,7 +16,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'book' },
+  { path: '', pathMatch: 'full', redirectTo: '/book' },
   {path:"user", component: UserComponent},
   {path:"book", component: BookComponent},
   {path:"login", component: LoginComponent},

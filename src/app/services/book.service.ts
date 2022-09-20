@@ -50,16 +50,15 @@ export class BookService {
 
     //Check User Logged in or not
     CheckUserLoggedInOrNot():boolean{
-        if (localStorage.getItem('token')) {
-            // logged in so return true
-            return true;
-        }
+      if (localStorage.getItem('token')) {
+          // logged in so return true
+          return true;
+      }
 
-        // not logged in so redirect to sign page with the return url
-         this.router.navigate(['/dashboard']);     
-        return false;
-    }
-
+      // not logged in so redirect to sign page with the return url
+       this.router.navigate(['/book']);     
+      return false;
+  }
     // Save book
     SaveBook(book : Book):Observable<Book>{
         return this.https.post<Book>(this.baseUrl + "Books",book);

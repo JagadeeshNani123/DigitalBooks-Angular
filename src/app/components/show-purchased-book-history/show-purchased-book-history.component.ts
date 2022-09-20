@@ -23,6 +23,8 @@ export class ShowPurchasedBookHistoryComponent implements OnInit {
     localStorage.removeItem('purchaseBookList');
     this.router.navigate(['/book']);
     localStorage.removeItem('readerEmailId');
+    localStorage.removeItem('userEmailD');
+    
   }
   GetPurchasedBookList(){
     this.services.GetPurchasedBookList(this.emailId).subscribe(

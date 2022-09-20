@@ -31,6 +31,7 @@ export class CongractulationsComponent implements OnInit {
 
   onCloseHandled() {
    localStorage.removeItem('alertFrom');
+   localStorage.removeItem('userName');
    if(this.alertMessage.includes("purchase"))
    {
    this.router.navigate(['/book']); 

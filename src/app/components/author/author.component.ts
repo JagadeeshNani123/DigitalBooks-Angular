@@ -8,6 +8,7 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
+
   searchResult: any;
   ModalTitle:string="";
   alertMesasage:string="";
@@ -15,8 +16,10 @@ export class AuthorComponent implements OnInit {
   userID : string ='';
   isTesting : boolean =true;
   book : any;
-  constructor(private service: BookService, public router:Router) { }
-
+  constructor(private service: BookService, public router:Router) { 
+    
+  }
+  
   ngOnInit(): void {
     
     this.service.CheckUserLoggedInOrNot();
