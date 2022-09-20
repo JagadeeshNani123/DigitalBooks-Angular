@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class CongractulationsComponent implements OnInit {
   alertMessage: string = '';
   ModalTitle:string="";
+  userName :string="";
+  userMessage :string="";
   display:string="";
   constructor(public router:Router) { }
 
@@ -18,6 +20,11 @@ export class CongractulationsComponent implements OnInit {
    
   openModal() {
     this.alertMessage = localStorage.getItem('alertFrom')||'';
+    this.userName = localStorage.getItem('userName')||'';
+    if(this.userName!='')
+    {
+      this.userMessage= "Your User Name: ";
+    }
     this.ModalTitle ="Success";
     this.display = "block";
   }

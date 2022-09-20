@@ -10,6 +10,7 @@ import { BookService } from 'src/app/services/book.service';
 export class AuthorComponent implements OnInit {
   searchResult: any;
   ModalTitle:string="";
+  alertMesasage:string="";
   display = "none";
   userID : string ='';
   isTesting : boolean =true;
@@ -45,10 +46,18 @@ export class AuthorComponent implements OnInit {
     activeInactiveClick(item:any){
       this.book =item; 
       this.book.active = !item.active;
-      console.log("item Value =" + JSON.stringify(item));
-      console.log(this.book);
+     
       this.service.UpdateBookStatus(this.book.bookId,this.userID,this.book.active).subscribe(
-        response => { alert('Status updated Successfully.'); }
+        response => { 
+          let bookStatus="Disabled";
+          if(this.book.active)
+          {
+            bookStatus="Enabled";
+          }
+          
+          localStorage.setItem('bookStatus', bookStatus);
+          this.router.navigate(['/bookstatus']); 
+         }
       )
     }
 }

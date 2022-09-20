@@ -4,6 +4,7 @@ import { AddbookComponent } from './components/addbook/addbook.component';
 import { AuthorComponent } from './components/author/author.component';
 import { BookComponent } from './components/book/book.component';
 import { ShowBooksComponent } from './components/book/show-books/show-books.component';
+import { BookstatusComponent } from './components/bookstatus/bookstatus.component';
 import { CongractulationsComponent } from './components/congractulations/congractulations.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GuestComponent } from './components/guest/guest.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path:"showbooks", component: ShowBooksComponent},
   {path:"addbook", component: AddbookComponent},
   {path:"congractulations", component: CongractulationsComponent},
-  {path:"showpurchasedbooks", component: ShowPurchasedBookHistoryComponent}
+  {path:"showpurchasedbooks", component: ShowPurchasedBookHistoryComponent},
+  {path:"bookstatus", component: BookstatusComponent}
   
 ];
 

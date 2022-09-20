@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ShowPurchasedBookHistoryComponent } from './components/show-purchased-book-history/show-purchased-book-history.component';
 import { CongractulationsComponent } from './components/congractulations/congractulations.component';
+import { BookstatusComponent } from './components/bookstatus/bookstatus.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CongractulationsComponent } from './components/congractulations/congrac
     AddbookComponent,
     ShowBooksComponent,
     ShowPurchasedBookHistoryComponent,
-    CongractulationsComponent
+    CongractulationsComponent,
+    BookstatusComponent
   ],
   imports: [
     BrowserModule,

@@ -1,19 +1,41 @@
-<div>
-    <!-- Add Book Modal -->
-    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-       <div class="modal-dialog" role="document">
-             <div class="modal-content">
-                   <div class="modal-header">
-                         <h4 class="modal-title">{{ModalTitle}}</h4>
-                         <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-                       </div>
-              <div class="modal-body">
-                 {{alertMessage}}
-                       </div>
-                   <div class="modal-footer">
-                         <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
-                       </div>
+
+  
+  <header class="ScriptHeader">
+      <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="rt-heading">
+                    <h1>Registration Successful</h1>
+              </div>
           </div>
-           </div>
-   </div>
-   </div>
+      </div>
+  </header>
+  
+  <section>
+      <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                
+  <!-- partial:index.partial.html -->
+  <div id='card' class="animated fadeIn">
+    <div id='upper-side'>
+        <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt=""> 
+    </div>
+    <div id='lower-side'>
+      <p id='message'>
+        {{alertMessage}}
+      </p>
+      <p id='message'>
+            {{userMessage}}<b>{{userName}}</b>
+          </p>
+      <button  id="contBtn"  (click)="onCloseHandled()">Continue</button>
+    </div>
+  </div>
+  <!-- partial -->
+                  
+             
+                  </div>
+              </div>
+      </div>
+  </section>
+  
+  

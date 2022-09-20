@@ -96,8 +96,9 @@ export class SignupComponent implements OnInit {
         response => {
           this.getAllUsers();
           this.signedUser=this.user.userName;
-          let alertMessage ="Congractulation. Successfully signed with us.\n Your user name: ";
-          localStorage.setItem('alertFrom', alertMessage+this.signedUser);
+          let alertMessage ="Congractulation. Successfully signed with us.";
+          localStorage.setItem('userName', this.signedUser);
+          localStorage.setItem('alertFrom', alertMessage);
           this.display = "block";
           this.user = {
             userId:'0',
