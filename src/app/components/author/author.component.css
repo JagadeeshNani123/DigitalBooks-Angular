@@ -11,7 +11,9 @@ table, th, td {
     background-color: rgba(150, 212, 212, 0.4);
   }
 
-  
+  button .addBook{
+    text-align: center;
+  }
   .switch {
     position: relative;
     display: inline-block;
@@ -70,4 +72,13 @@ table, th, td {
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+  .vertical-center {
+    margin: 0;
+    position: center;
+    text-align: center;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }

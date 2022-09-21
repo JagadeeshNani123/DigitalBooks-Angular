@@ -42,15 +42,16 @@
   }
 
   div.username {
-    position: absolute;
-    right: 180px;  
+    position: right;
+    right: 160px;  
     color: white;
+    text-align: right;
   } 
   
 
   .signout {
     position: absolute;
-    right: 200px;  
+    left: 1100px;  
     color: red;
   } 
   

@@ -7,7 +7,6 @@
   <a routerLink="login" routerLinkActive="active" *ngIf="!isLoggedIn"><i class="fa fa-fw fa-user"></i> Login</a>
 
   <div class="username" *ngIf="isLoggedIn"> {{UserName}}</div>
- <br/>
   <button align="right" class="signout" *ngIf="isLoggedIn"  (click)="signOutClick()" > <i class="fa fa-fw fa-user"></i>Sign Out</button>
 </div>
 
