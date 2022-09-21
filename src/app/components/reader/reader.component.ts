@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/models/bookmodel';
 import { BookService } from 'src/app/services/book.service';
 
@@ -27,7 +28,7 @@ export class ReaderComponent implements OnInit {
     }
     bookHistoryList : any =[];
 
-    constructor(private services: BookService){}
+    constructor(private services: BookService, public router:Router){}
 
     ngOnInit(): void {
       
@@ -42,7 +43,10 @@ export class ReaderComponent implements OnInit {
         this.purchaseObj.bookId=this.bookID;
         this.purchaseObj.emailId= this.userEmailID;
         this.services.PurchaseBook(this.purchaseObj).subscribe(
-      response => { let abc="Book Purchased Successfully.";
+      response => { 
+        localStorage.setItem('purchasedBookMessage', "Congractulations you have succesfully buyed book");
+        localStorage.setItem('purchesedBook', this.book.title);
+        this.router.navigate(['/congractulations']); 
        }
     )
     

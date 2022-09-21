@@ -10,7 +10,11 @@ export class CongractulationsComponent implements OnInit {
   alertMessage: string = '';
   ModalTitle:string="";
   userName :string="";
+  bookName: string="";
+  purchesedBook: string="";
+  purchasedBookMessage: string="";
   userMessage :string="";
+  newBookMessage :string="";
   display:string="";
   constructor(public router:Router) { }
 
@@ -21,9 +25,28 @@ export class CongractulationsComponent implements OnInit {
   openModal() {
     this.alertMessage = localStorage.getItem('alertFrom')||'';
     this.userName = localStorage.getItem('userName')||'';
+    this.bookName = localStorage.getItem('bookName')||'';
+    this.purchesedBook = localStorage.getItem('purchesedBook')||'';
+    this.purchasedBookMessage = localStorage.getItem('purchasedBookMessage')||'';
     if(this.userName!='')
     {
       this.userMessage= "Your User Name: ";
+      this.bookName="";
+      this.purchesedBook="";
+      this.purchasedBookMessage="";
+    }
+    else if(this.bookName!='')
+    {
+      this.newBookMessage= "Your Book Name: ";
+      this.userName="";
+      this.purchesedBook="";
+      this.purchasedBookMessage="";
+    }
+    else if(this.purchesedBook!=''){
+      this.newBookMessage= "";
+      this.userName="";
+      this.userMessage= "";
+      this.bookName="";
     }
     this.ModalTitle ="Success";
     this.display = "block";
@@ -32,7 +55,18 @@ export class CongractulationsComponent implements OnInit {
   onCloseHandled() {
    localStorage.removeItem('alertFrom');
    localStorage.removeItem('userName');
-   if(this.alertMessage.includes("purchase"))
+   localStorage.removeItem('bookName');
+   localStorage.removeItem('purchasedBookMessage');
+   localStorage.removeItem('purchesedBook');
+   this.userMessage="";
+   this.newBookMessage="";
+   this.userName="";
+   this.bookName="";
+   if(this.purchasedBookMessage.includes("buyed"))
+   {
+   this.router.navigate(['/reader']); 
+   }
+   else if(this.alertMessage.includes("purchase"))
    {
    this.router.navigate(['/book']); 
    }

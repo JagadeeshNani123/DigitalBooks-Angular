@@ -117,6 +117,7 @@ export class AddbookComponent implements OnInit {
 
         this.alertMessage = "Congractulations you have succesfully added book";
         localStorage.setItem('alertFrom', this.alertMessage);
+        localStorage.setItem('bookName', this.book.bookName);
         this.router.navigate(['/congractulations']); 
     }
     
